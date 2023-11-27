@@ -111,9 +111,9 @@ ThemeData getApplicationtheme(bool dark) {
         color: ColorManager.White,
         fontsize: FontSize.s20,
       ),
-      bodyLarge: getRegularStyle(
-        color: ColorManager.Black,
-        fontsize: FontSize.s14,
+      bodyLarge: getSemiBoldStyle(
+        color: ColorManager.White,
+        fontsize: FontSize.s16,
       ),
       displaySmall: getRegularStyle(
         color: ColorManager.White,
@@ -124,8 +124,8 @@ ThemeData getApplicationtheme(bool dark) {
         fontsize: FontSize.s14,
       ),
       bodySmall: getMediumStyle(
-        color: ColorManager.DarkGrey,
-        fontsize: FontSize.s14,
+        color: ColorManager.White,
+        fontsize: FontSize.s12,
       ),
       displayMedium: getRegularStyle(
         color: ColorManager.Black,

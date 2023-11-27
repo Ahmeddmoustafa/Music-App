@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:music_app/Resources/Managers/colors_manager.dart';
 import 'package:music_app/Resources/Managers/values_manager.dart';
 
-class TodaysHits extends StatefulWidget {
-  const TodaysHits({super.key});
+class TodayHits extends StatefulWidget {
+  const TodayHits({super.key});
 
   @override
-  State<TodaysHits> createState() => _TodaysHitsState();
+  State<TodayHits> createState() => _TodayHitsState();
 }
 
-class _TodaysHitsState extends State<TodaysHits> {
+class _TodayHitsState extends State<TodayHits> {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;

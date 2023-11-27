@@ -34,11 +34,11 @@ class _HomePageState extends State<HomePage> {
         child: Center(
           child: Container(
             margin: EdgeInsets.only(top: AppSize.s10),
-            width: width * 0.85,
+            width: width * 0.9,
             color: ColorManager.Black,
             child: Column(
               children: [
-                const TodaysHits(),
+                const TodayHits(),
                 Container(
                   margin: const EdgeInsets.only(top: AppSize.s10),
                   height: height * 0.3,

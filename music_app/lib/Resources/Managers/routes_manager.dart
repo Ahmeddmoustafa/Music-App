@@ -1,10 +1,14 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:music_app/Presentation/Home/home_page.dart';
+import 'package:music_app/Presentation/Profile/profile_page.dart';
 import 'package:music_app/Resources/Managers/strings_manager.dart';
 
 class Routes {
   static const String mainRoute = '/main';
+  static const String profileRoute = '/profile';
+
   static const String apartmentRoute = '/apartment';
   static const String splashRoute = '/';
   static const String loginRoute = '/login';
@@ -20,11 +24,14 @@ class Routes {
 class RouteGenerator {
   static Route<dynamic> getRoute(RouteSettings settings) {
     switch (settings.name) {
-      // case Routes.mainRoute:
-      //   {
-      //     return MaterialPageRoute(
-      //         builder: (context) => SafeArea(child: HomePage()));
-      //   }
+      case Routes.mainRoute:
+        {
+          return MaterialPageRoute(builder: (context) => HomePage());
+        }
+      case Routes.profileRoute:
+        {
+          return MaterialPageRoute(builder: (context) => ProfilePage());
+        }
 
       default:
         return unDefinedRoute();

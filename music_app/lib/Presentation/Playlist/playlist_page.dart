@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:music_app/Presentation/AppBars/Music_app_bar.dart';
+import 'package:music_app/Presentation/Playlist/playlist_card.dart';
+import 'package:music_app/Resources/Managers/colors_manager.dart';
+import 'package:music_app/Resources/Managers/values_manager.dart';
 
 class PlayListPage extends StatefulWidget {
   const PlayListPage({super.key});
@@ -15,12 +18,36 @@ class _PlayListPageState extends State<PlayListPage> {
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: PreferredSize(
-          preferredSize: Size(0, height * 0.1),
-          child: const MusicAppBar(
-            action: Icon(Icons.add),
-            title: Text("Playlists"),
-            home: false,
-          )),
+        preferredSize: Size(0, height * 0.1),
+        child: const MusicAppBar(
+          action: Icon(Icons.add),
+          title: Text("Playlists"),
+          home: false,
+        ),
+      ),
+      body: Center(
+        child: SizedBox(
+          width: width * 0.9,
+          height: height,
+          child: SingleChildScrollView(
+            child: Container(
+              margin: const EdgeInsets.symmetric(vertical: AppSize.s20),
+              child: GridView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: 9,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 10,
+                  ),
+                  itemBuilder: (context, index) {
+                    return const PlayListCard();
+                  }),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
