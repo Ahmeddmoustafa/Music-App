@@ -14,9 +14,13 @@ class ColorManager {
   static Color Transparent = const Color(0x00ffffff);
   static Color LightSilver = const Color(0xffE9E7E7);
   static Color Golden = const Color(0xffFfd700);
-  static Color Pink = const Color(0xffff1493);
+  static Color Pink = const Color(0xffFF41ED);
+  static Color Purple = const Color(0xffFF41ED);
 
   //
   static Color Blue = const Color(0xff000000);
   // static Color Blue = const Color(0xff2f8cff);
 }
+
+
+// static Color Pink = const Color(0xffff1493);

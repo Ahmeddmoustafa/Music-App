@@ -1,13 +1,19 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:music_app/Cubit/music_player_cubit.dart';
 import 'package:music_app/Presentation/Home/home_page.dart';
+import 'package:music_app/Presentation/MusicPlayer/music_player_page.dart';
+import 'package:music_app/Presentation/Playlist/playlist_page.dart';
 import 'package:music_app/Presentation/Profile/profile_page.dart';
 import 'package:music_app/Resources/Managers/strings_manager.dart';
 
 class Routes {
   static const String mainRoute = '/main';
   static const String profileRoute = '/profile';
+  static const String playlistsRoute = '/playlist';
+  static const String musicPlayerRoute = '/music';
 
   static const String apartmentRoute = '/apartment';
   static const String splashRoute = '/';
@@ -31,6 +37,14 @@ class RouteGenerator {
       case Routes.profileRoute:
         {
           return MaterialPageRoute(builder: (context) => ProfilePage());
+        }
+      case Routes.playlistsRoute:
+        {
+          return MaterialPageRoute(builder: (context) => PlayListPage());
+        }
+      case Routes.musicPlayerRoute:
+        {
+          return MaterialPageRoute(builder: (context) => MusicPlayer());
         }
 
       default:

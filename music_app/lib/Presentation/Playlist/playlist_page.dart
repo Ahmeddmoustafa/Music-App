@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:music_app/Presentation/AppBars/Music_app_bar.dart';
+import 'package:music_app/Presentation/AppBars/music_app_bar.dart';
 import 'package:music_app/Presentation/Playlist/playlist_card.dart';
-import 'package:music_app/Resources/Managers/colors_manager.dart';
 import 'package:music_app/Resources/Managers/values_manager.dart';
 
 class PlayListPage extends StatefulWidget {
@@ -42,7 +41,9 @@ class _PlayListPageState extends State<PlayListPage> {
                     crossAxisSpacing: 10,
                   ),
                   itemBuilder: (context, index) {
-                    return const PlayListCard();
+                    return PlayListCard(
+                      index: index,
+                    );
                   }),
             ),
           ),

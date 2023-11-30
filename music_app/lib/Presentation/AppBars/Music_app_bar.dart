@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:music_app/Resources/Managers/colors_manager.dart';
 import 'package:music_app/Resources/Managers/routes_manager.dart';
@@ -17,9 +15,9 @@ class MusicAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
+    // final height = MediaQuery.of(context).size.height;
     return AppBar(
-      automaticallyImplyLeading: home ? false : true,
+      automaticallyImplyLeading: false,
       elevation: !home ? 10 : 0,
       title: SizedBox(
           width: width * 0.85,
@@ -31,7 +29,13 @@ class MusicAppBar extends StatelessWidget {
                       Icons.search,
                       color: ColorManager.White,
                     )
-                  : Container(),
+                  : InkWell(
+                      onTap: () => Navigator.pop(context),
+                      child: Icon(
+                        Icons.arrow_back_ios_new_sharp,
+                        color: ColorManager.White,
+                      ),
+                    ),
               title,
               GestureDetector(
                   onTap: () {

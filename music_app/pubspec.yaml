@@ -13,6 +13,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  transparent_image:
+  dio:
+  hive:
+  hive_flutter:
+  flutter_bloc:
 
 
   
@@ -21,7 +26,10 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  build_runner:
+  hive_generator:
+  cached_network_image:
+  just_audio:
   
   flutter_lints: ^2.0.0
 
@@ -31,5 +39,8 @@ flutter:
 
  
   uses-material-design: true
+  assets:
+      - assets/images/artist_image.png
+      - assets/songs/song.mp3
 
  

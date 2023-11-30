@@ -75,7 +75,7 @@ ThemeData getApplicationtheme(bool dark) {
       elevation: 0,
       titleTextStyle: getBoldStyle(
         fontsize: FontSize.s26,
-        color: const Color(0xffff1493),
+        color: ColorManager.Pink,
       ),
     ),
 

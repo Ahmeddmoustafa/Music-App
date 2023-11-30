@@ -82,7 +82,7 @@ class _ProfileHeaderState extends State<ProfileHeader> {
                 ),
                 Column(
                   children: [
-                    Text("Followers"),
+                    const Text("Followers"),
                     Text(
                       "265",
                       style: textTheme.bodyMedium,
