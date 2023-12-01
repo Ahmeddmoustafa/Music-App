@@ -51,8 +51,8 @@ class _ArtistsState extends State<Artists> {
                             child: CachedNetworkImage(
                               fit: BoxFit.cover,
                               imageUrl: albums[index + 8].albumImage,
-                              placeholder: (context, string) =>
-                                  const CircularProgressIndicator(),
+                              // placeholder: (context, string) =>
+                              //     const CircularProgressIndicator(),
                             ),
                           ),
                         ),

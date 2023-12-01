@@ -1,8 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:music_app/Cubit/music_player_cubit.dart';
+import 'package:music_app/Presentation/AppBars/bottom_music_bar.dart';
 import 'package:music_app/Presentation/Home/home_page.dart';
 import 'package:music_app/Presentation/MusicPlayer/music_player_page.dart';
 import 'package:music_app/Presentation/Playlist/playlist_page.dart';
@@ -14,17 +13,13 @@ class Routes {
   static const String profileRoute = '/profile';
   static const String playlistsRoute = '/playlist';
   static const String musicPlayerRoute = '/music';
+  static const String bottomPlayerRoute = '/bottom';
 
   static const String apartmentRoute = '/apartment';
   static const String splashRoute = '/';
   static const String loginRoute = '/login';
   static const String registerRoute = '/register';
   static const String forgotPasswordRoute = '/forgotPassword';
-  static const String storeDetailsRoute = '/store';
-  static const String onBoardingRoute = '/onboarding';
-  static const String settingsRoute = '/settings';
-  static const String homeRoute = "/home";
-  static const String detailsRoute = "/details";
 }
 
 class RouteGenerator {
@@ -44,7 +39,14 @@ class RouteGenerator {
         }
       case Routes.musicPlayerRoute:
         {
-          return MaterialPageRoute(builder: (context) => MusicPlayer());
+          return MaterialPageRoute(
+              builder: (context) => MusicPlayer(
+                    sameSong: settings.arguments as bool,
+                  ));
+        }
+      case Routes.bottomPlayerRoute:
+        {
+          return MaterialPageRoute(builder: (context) => BottomMusicBar());
         }
 
       default:

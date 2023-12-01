@@ -49,9 +49,11 @@ class _MostPlayedState extends State<MostPlayed> {
                           ),
                           child: CachedNetworkImage(
                             fit: BoxFit.cover,
+                            errorWidget: (context, url, error) =>
+                                const Text("Server Failure"),
                             imageUrl: albums[index].albumImage,
                             placeholder: (context, string) =>
-                                CircularProgressIndicator(),
+                                const CircularProgressIndicator(),
                           ),
                         ),
                       ),

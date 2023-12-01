@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:music_app/Cubit/music_player_cubit.dart';
 import 'package:music_app/Cubit/track_cubit.dart';
-import 'package:music_app/Resources/Managers/colors_manager.dart';
 import 'package:music_app/Resources/Managers/routes_manager.dart';
 import 'package:music_app/Resources/Managers/values_manager.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -27,9 +26,11 @@ class _PlayListCardState extends State<PlayListCard> {
       builder: (context, state) {
         return GestureDetector(
           onTap: () {
-            BlocProvider.of<MusicPlayerCubit>(context)
-                .selectSong(albums[albums.length - 3 - widget.index]);
-            Navigator.pushNamed(context, Routes.musicPlayerRoute);
+            bool sameSong = BlocProvider.of<MusicPlayerCubit>(context)
+                .selectSong(albums[albums.length - 3 - widget.index],
+                    albums.length - 3 - widget.index);
+            Navigator.pushNamed(context, Routes.musicPlayerRoute,
+                arguments: sameSong);
           },
           child: SizedBox(
             child: Column(
@@ -44,8 +45,6 @@ class _PlayListCardState extends State<PlayListCard> {
                       fit: BoxFit.cover,
                       imageUrl:
                           albums[albums.length - 3 - widget.index].albumImage,
-                      placeholder: (context, string) =>
-                          const CircularProgressIndicator(),
                     ),
                   ),
                 ),

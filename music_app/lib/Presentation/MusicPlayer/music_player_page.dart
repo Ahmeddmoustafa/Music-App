@@ -6,13 +6,30 @@ import 'package:music_app/Resources/Managers/values_manager.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 class MusicPlayer extends StatefulWidget {
-  const MusicPlayer({super.key});
+  final bool sameSong;
+  const MusicPlayer({super.key, required this.sameSong});
 
   @override
   State<MusicPlayer> createState() => _MusicPlayerState();
 }
 
 class _MusicPlayerState extends State<MusicPlayer> {
+  @override
+  void initState() {
+    super.initState();
+    if (!widget.sameSong) {
+      // print("not the  same song");
+      context.read<MusicPlayerCubit>().playSong(false);
+    }
+    context.read<MusicPlayerCubit>().playSong(true);
+
+    // context.read<MusicPlayerCubit>().playSong(1);
+
+    // if(context.read<MusicPlayerCubit>().playing == true){
+
+    // }
+  }
+
   double _currposition = 0;
   @override
   Widget build(BuildContext context) {
@@ -63,34 +80,19 @@ class _MusicPlayerState extends State<MusicPlayer> {
                 builder: (context, state) {
                   return Column(
                     children: [
-                      state is MusicPlayerSelected
-                          ? Container(
-                              // width: width * 0.6,
-                              margin:
-                                  const EdgeInsets.only(bottom: AppSize.s10),
-                              height: height * 0.4,
+                      Container(
+                        // width: width * 0.6,
+                        margin: const EdgeInsets.only(bottom: AppSize.s10),
+                        height: height * 0.4,
 
-                              child: CachedNetworkImage(
-                                fit: BoxFit.fill,
-                                imageUrl: context
-                                    .read<MusicPlayerCubit>()
-                                    .song
-                                    .albumImage,
-                                placeholder: (context, string) =>
-                                    CircularProgressIndicator(),
-                              ),
-                            )
-                          : Container(
-                              // width: width * 0.6,
-                              margin:
-                                  const EdgeInsets.only(bottom: AppSize.s10),
-                              height: height * 0.4,
-
-                              decoration: BoxDecoration(
-                                  color: ColorManager.White,
-                                  borderRadius:
-                                      BorderRadius.circular(AppSize.s10)),
-                            ),
+                        child: CachedNetworkImage(
+                          fit: BoxFit.fill,
+                          imageUrl:
+                              context.read<MusicPlayerCubit>().song.albumImage,
+                          // placeholder: (context, string) =>
+                          //     const CircularProgressIndicator(),
+                        ),
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -99,12 +101,10 @@ class _MusicPlayerState extends State<MusicPlayer> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  state is MusicPlayerSelected
-                                      ? context
-                                          .read<MusicPlayerCubit>()
-                                          .song
-                                          .artistName
-                                      : "No SONG FOUND",
+                                  context
+                                      .read<MusicPlayerCubit>()
+                                      .song
+                                      .artistName,
                                   style: textTheme.bodyLarge,
                                   overflow: TextOverflow.ellipsis,
                                 ),
@@ -112,12 +112,10 @@ class _MusicPlayerState extends State<MusicPlayer> {
                                   height: AppSize.s4,
                                 ),
                                 Text(
-                                  state is MusicPlayerSelected
-                                      ? context
-                                          .read<MusicPlayerCubit>()
-                                          .song
-                                          .albumName
-                                      : "NO SONG FOUND",
+                                  context
+                                      .read<MusicPlayerCubit>()
+                                      .song
+                                      .albumName,
                                   style: textTheme.bodyLarge,
                                   overflow: TextOverflow.ellipsis,
                                 ),
@@ -151,14 +149,25 @@ class _MusicPlayerState extends State<MusicPlayer> {
                               Icons.repeat,
                               color: ColorManager.White,
                             ),
-                            Icon(
-                              Icons.arrow_back,
-                              color: ColorManager.White,
-                            ),
                             InkWell(
                               onTap: () {
                                 BlocProvider.of<MusicPlayerCubit>(context)
-                                    .playSong(5);
+                                    .replaySong();
+                              },
+                              child: Icon(
+                                Icons.arrow_back,
+                                color: ColorManager.White,
+                              ),
+                            ),
+                            InkWell(
+                              highlightColor: ColorManager.Transparent,
+                              splashColor: ColorManager.Transparent,
+                              onTap: () async {
+                                state.played == false
+                                    ? BlocProvider.of<MusicPlayerCubit>(context)
+                                        .resume()
+                                    : BlocProvider.of<MusicPlayerCubit>(context)
+                                        .pauseSong();
                               },
                               child: Container(
                                 height: AppSize.s50,
@@ -168,7 +177,9 @@ class _MusicPlayerState extends State<MusicPlayer> {
                                     shape: BoxShape.circle),
                                 child: Center(
                                   child: Icon(
-                                    Icons.play_arrow,
+                                    state.played == false
+                                        ? Icons.play_arrow
+                                        : Icons.pause,
                                     color: ColorManager.White,
                                     size: AppSize.s30,
                                   ),

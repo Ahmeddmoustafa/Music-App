@@ -8,30 +8,75 @@ part 'music_player_state.dart';
 class MusicPlayerCubit extends Cubit<MusicPlayerState> {
   final AudioPlayer player = AudioPlayer();
   late Album song;
-  MusicPlayerCubit() : super(MusicPlayerInitial(played: false));
+  late int songIndex = -1;
+  late bool playing = false;
+  late bool paused = false;
+  MusicPlayerCubit() : super(MusicPlayerInitial(played: false, paused: false));
 
-  void selectSong(Album selectedSong) {
-    emit(MusicPlayerInitial(played: false));
+  bool selectSong(Album selectedSong, int index) {
+    bool same = false;
+    emit(MusicPlayerInitial(played: false, paused: false));
+    // print("curr index $songIndex and next index is $index");
+    if (songIndex == index) {
+      same = true;
+    }
     song = selectedSong;
-    emit(MusicPlayerSelected(played: false));
+    songIndex = index;
+
+    emit(MusicPlayerSelected(played: true, paused: false));
+
+    return same;
   }
 
   void stopSong() {
-    emit(MusicPlayerInitial(played: true));
+    emit(MusicPlayerInitial(played: true, paused: false));
     player.stop();
-    emit(MusicPlayerSelected(played: false));
+    emit(MusicPlayerSelected(played: false, paused: false));
   }
 
-  void playSong(song) async {
-    try {
-      emit(MusicPlayerInitial(played: false));
+  void replaySong() async {
+    emit(MusicPlayerInitial(played: true, paused: true));
+    if (player.audioSource != null) {
+      player.stop();
       await player.setAsset(AssetsManager.Song1);
       player.play();
+      playing = true;
+      emit(MusicPlayerSelected(played: true, paused: false));
+    }
+    // emit(MusicPlayerSelected(played: true,paused: true));
+  }
+
+  void pauseSong() {
+    emit(MusicPlayerInitial(played: true, paused: false));
+    player.pause();
+    playing = false;
+    paused = true;
+    emit(MusicPlayerSelected(played: false, paused: true));
+  }
+
+  void resume() {
+    emit(MusicPlayerInitial(played: false, paused: true));
+    if (player.audioSource != null) {
+      player.play();
+      playing = true;
+
+      emit(MusicPlayerSelected(played: true, paused: false));
+    }
+    emit(MusicPlayerSelected(played: true, paused: false));
+  }
+
+  Future<void> playSong(bool sameSong) async {
+    try {
+      emit(MusicPlayerInitial(played: false, paused: false));
+      if (!sameSong) {
+        await player.setAsset(AssetsManager.Song1);
+      }
+      player.play();
       // player.stop();
-      emit(MusicPlayerSelected(played: true));
+      emit(MusicPlayerSelected(played: true, paused: false));
     } on Exception {
-      emit(MusicPlayerSelected(played: false));
-      print("Error");
+      emit(MusicPlayerSelected(played: false, paused: true));
+      // print("Error");
     }
   }
 }

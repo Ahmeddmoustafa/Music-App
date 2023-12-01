@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:music_app/Cubit/music_player_cubit.dart';
 import 'package:music_app/Cubit/track_cubit.dart';
 import 'package:music_app/Data/Models/album_model.dart';
+import 'package:music_app/Presentation/AppBars/bottom_music_bar.dart';
 import 'package:music_app/Presentation/AppBars/music_app_bar.dart';
 import 'package:music_app/Presentation/Home/artists.dart';
 import 'package:music_app/Presentation/Home/todays_hits.dart';
@@ -37,12 +38,13 @@ class _HomePageState extends State<HomePage> {
         preferredSize: Size(0, height * 0.1),
         child: const MusicAppBar(
           action: Icon(
-            Icons.settings,
+            Icons.account_box_outlined,
           ),
           title: Text("LOGO"),
           home: true,
         ),
       ),
+      bottomNavigationBar: const BottomMusicBar(),
       body: FutureBuilder(
           future: BlocProvider.of<TracksCubit>(context).loadTracks(),
           builder: (context, snapshot) {
@@ -60,15 +62,16 @@ class _HomePageState extends State<HomePage> {
                         const TodayHits(),
                         InkWell(
                           onTap: () {
-                            Navigator.pushNamed(
-                                context, Routes.musicPlayerRoute);
-
-                            BlocProvider.of<MusicPlayerCubit>(context)
-                                .selectSong(Album(
+                            BlocProvider.of<MusicPlayerCubit>(context).selectSong(
+                                Album(
                                     albumImage:
                                         "https://mir-s3-cdn-cf.behance.net/projects/404/57f6c7176428221.64c977e00a326.jpg",
                                     albumName: "Ana Negm",
-                                    artistName: "Amir Eid"));
+                                    artistName: "Amir Eid"),
+                                -1);
+                            Navigator.pushNamed(
+                                context, Routes.musicPlayerRoute,
+                                arguments: false);
                           },
                           child: Container(
                             margin: const EdgeInsets.only(top: AppSize.s10),

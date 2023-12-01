@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:music_app/Presentation/AppBars/bottom_music_bar.dart';
 import 'package:music_app/Presentation/AppBars/music_app_bar.dart';
 import 'package:music_app/Presentation/Playlist/playlist_card.dart';
 import 'package:music_app/Resources/Managers/values_manager.dart';
@@ -16,6 +17,7 @@ class _PlayListPageState extends State<PlayListPage> {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
+      bottomNavigationBar: const BottomMusicBar(),
       appBar: PreferredSize(
         preferredSize: Size(0, height * 0.1),
         child: const MusicAppBar(

@@ -5,30 +5,30 @@ import 'package:music_app/api_constant.dart';
 
 class RemoteSongsImpl {
   static void getAllSongs() async {}
-  void _fetchtracks() async {
+  void fetchtracks() async {
     try {
       final Response response = await Dio().get(
         "https://ws.audioscrobbler.com/2.0/?method=album.search&album=love&api_key=${ApiConstants.apiKey}&format=json",
       );
-      print(response.data);
+      // print(response.data);
 
       if (response.statusCode == 200) {
         final Box trackResponseBox = await Hive.openBox("Tracks-Response");
         trackResponseBox.add(response.data);
       }
     } catch (e) {
-      print("the error is ${e.toString()}");
+      // print("the error is ${e.toString()}");
     }
   }
 
   void loadAllTracks() async {
-    print("func called");
+    // print("func called");
     // _fetchtracks();
 
     final Box trackResponseBox = await Hive.openBox("Tracks-Response");
     final responseData = await trackResponseBox.getAt(1);
     if (responseData != null) {
-      print(responseData["results"]["albummatches"]["album"]);
+      // print(responseData["results"]["albummatches"]["album"]);
     } else {
       return;
     }
@@ -56,7 +56,7 @@ class RemoteSongsImpl {
   }
 
   Future<List<Album>> getAllAlbums() async {
-    loadAllTracks();
+    // loadAllTracks();
     try {
       final trackBox = await Hive.openBox<Album>("Tracks");
       // for (int i = 49; i <= 100; i++) await trackBox.deleteAt(i);

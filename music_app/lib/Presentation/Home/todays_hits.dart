@@ -44,9 +44,17 @@ class _TodayHitsState extends State<TodayHits> {
                     itemBuilder: (context, index) {
                       return InkWell(
                         onTap: () {
-                          BlocProvider.of<MusicPlayerCubit>(context)
-                              .selectSong(albums[index]);
-                          Navigator.pushNamed(context, Routes.musicPlayerRoute);
+                          bool sameSong =
+                              BlocProvider.of<MusicPlayerCubit>(context)
+                                  .selectSong(
+                            albums[index],
+                            index,
+                          );
+                          Navigator.pushNamed(
+                            context,
+                            Routes.musicPlayerRoute,
+                            arguments: sameSong,
+                          );
                         },
                         child: Container(
                           margin: const EdgeInsets.only(right: AppSize.s18),
@@ -77,8 +85,8 @@ class _TodayHitsState extends State<TodayHits> {
                                               fit: BoxFit.fill,
                                               imageUrl:
                                                   albums[index].albumImage,
-                                              placeholder: (context, string) =>
-                                                  CircularProgressIndicator(),
+                                              // placeholder: (context, string) =>
+                                              //     const CircularProgressIndicator(),
                                             ),
                                           ),
                                         ),
