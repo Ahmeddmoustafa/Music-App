@@ -26,8 +26,10 @@ class _BottomMusicBarState extends State<BottomMusicBar> {
           color: ColorManager.Transparent,
           child: GestureDetector(
             onTap: () {
-              Navigator.pushNamed(context, Routes.musicPlayerRoute,
-                  arguments: true);
+              if (context.read<MusicPlayerCubit>().player.audioSource != null) {
+                Navigator.pushNamed(context, Routes.musicPlayerRoute,
+                    arguments: true);
+              }
             },
             child: Container(
               decoration: BoxDecoration(

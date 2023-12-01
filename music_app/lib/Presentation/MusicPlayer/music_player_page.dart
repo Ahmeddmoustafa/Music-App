@@ -4,6 +4,7 @@ import 'package:music_app/Cubit/music_player_cubit.dart';
 import 'package:music_app/Resources/Managers/colors_manager.dart';
 import 'package:music_app/Resources/Managers/values_manager.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 
 class MusicPlayer extends StatefulWidget {
   final bool sameSong;
@@ -74,11 +75,13 @@ class _MusicPlayerState extends State<MusicPlayer> {
           ),
           child: FractionallySizedBox(
             widthFactor: 0.7,
+            heightFactor: 0.95,
             child: Container(
-              margin: EdgeInsets.only(top: height * 0.1),
+              margin: EdgeInsets.only(top: height * 0.05),
               child: BlocBuilder<MusicPlayerCubit, MusicPlayerState>(
                 builder: (context, state) {
                   return Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Container(
                         // width: width * 0.6,
@@ -128,17 +131,48 @@ class _MusicPlayerState extends State<MusicPlayer> {
                           ),
                         ],
                       ),
-                      Slider(
-                        activeColor: ColorManager.Pink,
-                        min: 0,
-                        max: 100,
-                        value: _currposition,
-                        onChanged: (value) {
-                          setState(() {
-                            _currposition = value;
-                          });
-                        },
-                      ),
+                      StreamBuilder<PositionData>(
+                          stream: BlocProvider.of<MusicPlayerCubit>(context)
+                              .positionDataStream,
+                          builder: (context, snapshot) {
+                            final positiondata = snapshot.data;
+                            return ProgressBar(
+                              thumbGlowRadius: AppSize.s16,
+                              progressBarColor: ColorManager.Pink,
+                              thumbColor: ColorManager.Pink,
+                              progress: positiondata?.position ?? Duration.zero,
+                              total: positiondata?.duration ?? Duration.zero,
+                              onSeek: BlocProvider.of<MusicPlayerCubit>(context)
+                                  .seek,
+                            );
+                            // return Row(
+                            //   children: [
+                            //     Text(
+                            //       "0:00",
+                            //       style: textTheme.displaySmall,
+                            //     ),
+                            //     Flexible(
+                            //       child: Slider(
+                            //         activeColor: ColorManager.Pink,
+                            //         min: 0,
+                            //         max: 100,
+                            //         value: _currposition,
+                            //         onChanged: (value) {
+                            //           BlocProvider.of<MusicPlayerCubit>(context)
+                            //               .seek(Duration());
+                            //           // setState(() {
+                            //           //   _currposition = value;
+                            //           // });
+                            //         },
+                            //       ),
+                            //     ),
+                            //     Text(
+                            //       "4:26",
+                            //       style: textTheme.displaySmall,
+                            //     ),
+                            //   ],
+                            // );
+                          }),
                       Container(
                         margin:
                             const EdgeInsets.symmetric(vertical: AppSize.s20),

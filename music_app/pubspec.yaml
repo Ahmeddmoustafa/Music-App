@@ -30,6 +30,7 @@ dev_dependencies:
   hive_generator:
   cached_network_image:
   just_audio:
+  audio_video_progress_bar:
   
   flutter_lints: ^2.0.0
 
