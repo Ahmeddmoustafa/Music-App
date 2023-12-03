@@ -10,7 +10,7 @@ part 'music_player_state.dart';
 class MusicPlayerCubit extends Cubit<MusicPlayerState> {
   final AudioPlayer player = AudioPlayer();
   late Album song;
-  late int songIndex = -1;
+  late int songIndex = -2;
   late bool playing = false;
   late bool paused = false;
   MusicPlayerCubit() : super(MusicPlayerInitial(played: false, paused: false));

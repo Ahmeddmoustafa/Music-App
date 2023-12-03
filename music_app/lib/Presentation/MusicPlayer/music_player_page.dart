@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:music_app/Cubit/music_player_cubit.dart';
+import 'package:music_app/Cubit/MusicPlayer/music_player_cubit.dart';
 import 'package:music_app/Resources/Managers/colors_manager.dart';
 import 'package:music_app/Resources/Managers/values_manager.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -31,7 +31,7 @@ class _MusicPlayerState extends State<MusicPlayer> {
     // }
   }
 
-  double _currposition = 0;
+  // double _currposition = 0;
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;

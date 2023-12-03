@@ -11,26 +11,33 @@ environment:
 
 
 dependencies:
+
   flutter:
     sdk: flutter
+  path: any
   transparent_image:
   dio:
   hive:
   hive_flutter:
   flutter_bloc:
+  cached_network_image: ^3.3.0
+  just_audio:
+  audio_video_progress_bar: ^2.0.1
+  email_validator: ^2.1.16
+  firebase_auth:   
+  cloud_firestore: 
 
 
   
   cupertino_icons: ^1.0.2
+  firebase_core: ^2.24.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   build_runner:
   hive_generator:
-  cached_network_image:
-  just_audio:
-  audio_video_progress_bar:
+  
   
   flutter_lints: ^2.0.0
 

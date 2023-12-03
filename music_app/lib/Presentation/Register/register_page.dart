@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:music_app/Resources/Managers/assets_manager.dart';
 import 'package:music_app/Resources/Managers/colors_manager.dart';
 import 'package:music_app/Resources/Managers/routes_manager.dart';
-import 'package:music_app/Resources/Managers/strings_manager.dart';
+// import 'package:music_app/Resources/Managers/strings_manager.dart';
 import 'package:music_app/Resources/Managers/values_manager.dart';
 
 class RegisterPage extends StatelessWidget {
@@ -17,7 +17,7 @@ class RegisterPage extends StatelessWidget {
       appBar: AppBar(
         leading: InkWell(
           onTap: () => Navigator.pop(context),
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back,
           ),
         ),

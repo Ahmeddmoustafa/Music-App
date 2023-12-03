@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "399672145291",
+    "project_id": "echo-music-3f3df",
+    "storage_bucket": "echo-music-3f3df.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:399672145291:android:c7a02314cd2cc5324eeb8e",
+        "android_client_info": {
+          "package_name": "com.example.music_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAt2hDKSrIY41V49evD68bCUBty_fJ9j_c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

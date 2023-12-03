@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:music_app/Cubit/music_player_cubit.dart';
-import 'package:music_app/Cubit/track_cubit.dart';
+import 'package:music_app/Cubit/MusicPlayer/music_player_cubit.dart';
+import 'package:music_app/Cubit/Track/track_cubit.dart';
 import 'package:music_app/Data/Models/album_model.dart';
 import 'package:music_app/Presentation/AppBars/bottom_music_bar.dart';
 import 'package:music_app/Presentation/AppBars/music_app_bar.dart';

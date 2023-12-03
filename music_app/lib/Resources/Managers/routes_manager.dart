@@ -1,6 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:music_app/Cubit/SignIn/sign_in_cubit.dart';
+import 'package:music_app/Cubit/SignUp/sign_up_cubit.dart';
 import 'package:music_app/Presentation/AppBars/bottom_music_bar.dart';
 import 'package:music_app/Presentation/Home/home_page.dart';
 import 'package:music_app/Presentation/Landing/logo_page.dart';
@@ -9,8 +12,8 @@ import 'package:music_app/Presentation/MusicPlayer/music_player_page.dart';
 import 'package:music_app/Presentation/Playlist/playlist_page.dart';
 import 'package:music_app/Presentation/Profile/profile_page.dart';
 import 'package:music_app/Presentation/Register/register_page.dart';
-import 'package:music_app/Presentation/Register/sign_in.dart';
-import 'package:music_app/Presentation/Register/sign_up.dart';
+import 'package:music_app/Presentation/Register/sign_in_page.dart';
+import 'package:music_app/Presentation/Register/sign_up_page.dart';
 import 'package:music_app/Resources/Managers/strings_manager.dart';
 
 class Routes {
@@ -72,11 +75,20 @@ class RouteGenerator {
         }
       case Routes.signUpRoute:
         {
-          return MaterialPageRoute(builder: (context) => SignUpPage());
+          return MaterialPageRoute(
+              builder: (context) => BlocProvider(
+                    create: (context) => SignUpCubit(),
+                    child: SignUpPage(),
+                  ));
         }
       case Routes.signInRoute:
         {
-          return MaterialPageRoute(builder: (context) => SignInPage());
+          return MaterialPageRoute(
+            builder: (context) => BlocProvider(
+              create: (context) => SignInCubit(),
+              child: SignInPage(),
+            ),
+          );
         }
 
       default:
