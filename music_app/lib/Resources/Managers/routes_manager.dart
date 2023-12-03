@@ -3,9 +3,14 @@
 import 'package:flutter/material.dart';
 import 'package:music_app/Presentation/AppBars/bottom_music_bar.dart';
 import 'package:music_app/Presentation/Home/home_page.dart';
+import 'package:music_app/Presentation/Landing/logo_page.dart';
+import 'package:music_app/Presentation/Landing/onboarding_page.dart';
 import 'package:music_app/Presentation/MusicPlayer/music_player_page.dart';
 import 'package:music_app/Presentation/Playlist/playlist_page.dart';
 import 'package:music_app/Presentation/Profile/profile_page.dart';
+import 'package:music_app/Presentation/Register/register_page.dart';
+import 'package:music_app/Presentation/Register/sign_in.dart';
+import 'package:music_app/Presentation/Register/sign_up.dart';
 import 'package:music_app/Resources/Managers/strings_manager.dart';
 
 class Routes {
@@ -14,6 +19,10 @@ class Routes {
   static const String playlistsRoute = '/playlist';
   static const String musicPlayerRoute = '/music';
   static const String bottomPlayerRoute = '/bottom';
+  static const String logoRoute = '/logo';
+  static const String onBoardingRoute = '/onboarding';
+  static const String signUpRoute = '/signup';
+  static const String signInRoute = '/signin';
 
   static const String apartmentRoute = '/apartment';
   static const String splashRoute = '/';
@@ -37,16 +46,37 @@ class RouteGenerator {
         {
           return MaterialPageRoute(builder: (context) => PlayListPage());
         }
+      case Routes.logoRoute:
+        {
+          return MaterialPageRoute(builder: (context) => LogoPage());
+        }
       case Routes.musicPlayerRoute:
         {
           return MaterialPageRoute(
-              builder: (context) => MusicPlayer(
-                    sameSong: settings.arguments as bool,
-                  ));
+            builder: (context) => MusicPlayer(
+              sameSong: settings.arguments as bool,
+            ),
+          );
         }
       case Routes.bottomPlayerRoute:
         {
           return MaterialPageRoute(builder: (context) => BottomMusicBar());
+        }
+      case Routes.onBoardingRoute:
+        {
+          return MaterialPageRoute(builder: (context) => OnBoardingPage());
+        }
+      case Routes.registerRoute:
+        {
+          return MaterialPageRoute(builder: (context) => RegisterPage());
+        }
+      case Routes.signUpRoute:
+        {
+          return MaterialPageRoute(builder: (context) => SignUpPage());
+        }
+      case Routes.signInRoute:
+        {
+          return MaterialPageRoute(builder: (context) => SignInPage());
         }
 
       default:

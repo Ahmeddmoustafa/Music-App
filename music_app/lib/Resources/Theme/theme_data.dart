@@ -128,8 +128,8 @@ ThemeData getApplicationtheme(bool dark) {
         fontsize: FontSize.s12,
       ),
       displayMedium: getRegularStyle(
-        color: ColorManager.Black,
-        fontsize: FontSize.s16,
+        color: ColorManager.LightGrey,
+        fontsize: FontSize.s18,
       ),
     ),
     // ******************** Input theme ********************

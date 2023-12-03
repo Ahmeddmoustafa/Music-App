@@ -32,35 +32,33 @@ class _PlayListCardState extends State<PlayListCard> {
             Navigator.pushNamed(context, Routes.musicPlayerRoute,
                 arguments: sameSong);
           },
-          child: SizedBox(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(AppSize.s10),
-                    child: CachedNetworkImage(
-                      errorWidget: (context, url, error) =>
-                          const Text("Server Failure"),
-                      fit: BoxFit.cover,
-                      imageUrl:
-                          albums[albums.length - 3 - widget.index].albumImage,
-                    ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(AppSize.s10),
+                  child: CachedNetworkImage(
+                    errorWidget: (context, url, error) =>
+                        const Text("Server Failure"),
+                    fit: BoxFit.cover,
+                    imageUrl:
+                        albums[albums.length - 3 - widget.index].albumImage,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: AppSize.s4),
-                  child: Text(
-                    albums[albums.length - 3 - widget.index].artistName,
-                    style: textTheme.displaySmall,
-                  ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: AppSize.s4),
+                child: Text(
+                  albums[albums.length - 3 - widget.index].artistName,
+                  style: textTheme.displaySmall,
                 ),
-                Text(
-                  albums[albums.length - 3 - widget.index].albumName,
-                  style: textTheme.bodySmall,
-                ),
-              ],
-            ),
+              ),
+              Text(
+                albums[albums.length - 3 - widget.index].albumName,
+                style: textTheme.bodySmall,
+              ),
+            ],
           ),
         );
       },

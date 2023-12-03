@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
           title: 'Music App',
           theme: getApplicationtheme(false),
           onGenerateRoute: RouteGenerator.getRoute,
-          initialRoute: Routes.mainRoute,
+          initialRoute: Routes.onBoardingRoute,
         ),
       ),
     );

@@ -42,6 +42,9 @@ flutter:
   uses-material-design: true
   assets:
       - assets/images/artist_image.png
+      - assets/images/logo.png
+      - assets/images/onboarding.png
+
       - assets/songs/song.mp3
 
  

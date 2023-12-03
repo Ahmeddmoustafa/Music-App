@@ -40,7 +40,12 @@ class _HomePageState extends State<HomePage> {
           action: Icon(
             Icons.account_box_outlined,
           ),
-          title: Text("LOGO"),
+          title: Image(
+            width: AppSize.s100,
+            image: AssetImage(
+              AssetsManager.Logo,
+            ),
+          ),
           home: true,
         ),
       ),

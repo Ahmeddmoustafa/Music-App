@@ -1,4 +1,7 @@
 class AppStrings {
+  static const dummy =
+      "Nulla Lorem mollit cupidatat irure. Laborum magna nulla duis ullamco cillum dolor. Voluptate exercitation incididunt aliquip deserunt reprehenderit elit laborum. ";
+
   static const noRouteFound = "No Route Found";
   static const skip = "Skip";
   static const services = "Services";
