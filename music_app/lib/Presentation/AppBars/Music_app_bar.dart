@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:music_app/Resources/Managers/colors_manager.dart';
 import 'package:music_app/Resources/Managers/routes_manager.dart';
@@ -25,9 +26,12 @@ class MusicAppBar extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               home
-                  ? Icon(
-                      Icons.search,
-                      color: ColorManager.White,
+                  ? InkWell(
+                      onTap: () => FirebaseAuth.instance.signOut(),
+                      child: Icon(
+                        Icons.logout,
+                        color: ColorManager.White,
+                      ),
                     )
                   : InkWell(
                       onTap: () => Navigator.pop(context),

@@ -12,7 +12,9 @@ class TracksCubit extends Cubit<TracksState> {
   Future<void> loadTracks() async {
     emit(TracksLoading());
     try {
-      albums = await dataSource.getAllAlbums();
+      if (albums.isEmpty) {
+        albums = await dataSource.getAllAlbums();
+      }
       emit(TracksLoaded());
     } on Exception {
       emit(TracksFailed());

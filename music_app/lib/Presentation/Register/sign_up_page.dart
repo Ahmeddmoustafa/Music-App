@@ -42,7 +42,7 @@ class _SignUpPageState extends State<SignUpPage> {
             child: BlocConsumer<SignUpCubit, SignUpState>(
               listener: (context, state) {
                 if (state is SignUpLoading) {
-                  Navigator.pushReplacementNamed(context, Routes.mainRoute);
+                  Navigator.pushReplacementNamed(context, Routes.authRoute);
                 } else if (state is SignUpFailed) {
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                     showCloseIcon: true,
@@ -65,8 +65,9 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     const SizedBox(height: AppSize.s16),
                     TextFormField(
+                      controller:
+                          context.read<SignUpCubit>().fullNameController,
                       style: textTheme.displaySmall,
-                      // obscureText: true,
                       decoration: InputDecoration(
                         labelStyle: textTheme.displaySmall,
                         labelText: 'Full Name',

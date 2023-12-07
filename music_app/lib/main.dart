@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:music_app/Cubit/MusicPlayer/music_player_cubit.dart';
+import 'package:music_app/Cubit/SignUp/sign_up_cubit.dart';
 import 'package:music_app/Cubit/Track/track_cubit.dart';
 import 'package:music_app/Data/Models/album_model.dart';
 import 'package:music_app/Resources/Managers/routes_manager.dart';
@@ -33,13 +34,16 @@ class MyApp extends StatelessWidget {
           BlocProvider(
             create: (context) => MusicPlayerCubit(),
           ),
+          BlocProvider(
+            create: (context) => SignUpCubit(),
+          ),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Music App',
           theme: getApplicationtheme(false),
           onGenerateRoute: RouteGenerator.getRoute,
-          initialRoute: Routes.onBoardingRoute,
+          initialRoute: Routes.authRoute,
         ),
       ),
     );

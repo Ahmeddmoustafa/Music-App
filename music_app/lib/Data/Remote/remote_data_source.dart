@@ -23,7 +23,7 @@ class RemoteSongsImpl {
 
   void loadAllTracks() async {
     // print("func called");
-    // _fetchtracks();
+    // fetchtracks();
 
     final Box trackResponseBox = await Hive.openBox("Tracks-Response");
     final responseData = await trackResponseBox.getAt(1);
@@ -50,9 +50,9 @@ class RemoteSongsImpl {
         Album.fromJson(newMap),
       );
     }
-    // print('hive response ${albumModels.length}');
-    // final trackBox = await Hive.openBox<Album>("Tracks");
-    // trackBox.addAll(albumModels);
+    print('hive response ${albumModels.length}');
+    final trackBox = await Hive.openBox<Album>("Tracks");
+    trackBox.addAll(albumModels);
   }
 
   Future<List<Album>> getAllAlbums() async {
@@ -63,7 +63,7 @@ class RemoteSongsImpl {
 
       final List<Album> albums = trackBox.values.toList();
 
-      // print('loaded tracks ${albums.length}');
+      print('loaded tracks ${albums.length}');
       return albums;
     } catch (e) {
       throw Exception(e.toString());

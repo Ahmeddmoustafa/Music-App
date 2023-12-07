@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:music_app/Data/Remote/firebase_services.dart';
 part 'sign_in_state.dart';
 
 class SignInCubit extends Cubit<SignInState> {
@@ -10,7 +11,7 @@ class SignInCubit extends Cubit<SignInState> {
   late String password;
   late String emailError;
   late String passwordError;
-  // final authservice = AuthService();
+  final authservice = FirebaseServices();
   SignInCubit() : super(SignInInitial());
 
   void initVariables() {
@@ -45,7 +46,7 @@ class SignInCubit extends Cubit<SignInState> {
 
     if (EmailValidator.validate(email) && password.length >= 8) {
       try {
-        // await authservice.signIn(email, password);
+        await authservice.signIn(email, password);
         emit(SignInLoading());
       } catch (err) {
         emit(SignInFailed(error: err.toString()));

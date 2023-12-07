@@ -12,7 +12,12 @@
           "package_name": "com.example.music_app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "399672145291-2llk3h13b88gp9vs6rhenacr6u6kkpfu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAt2hDKSrIY41V49evD68bCUBty_fJ9j_c"
@@ -20,7 +25,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "399672145291-2llk3h13b88gp9vs6rhenacr6u6kkpfu.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "399672145291-6bmanhpga67vff9u507c85trhk0rru4o.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.musicApp"
+              }
+            }
+          ]
         }
       }
     }

@@ -7,6 +7,8 @@ sealed class SignUpState {}
 
 final class SignUpInitial extends SignUpState {}
 
+final class SignUpFinished extends SignUpState {}
+
 final class SignUpFailed extends SignUpState {
   final String error;
 

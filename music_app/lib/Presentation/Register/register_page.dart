@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:music_app/Cubit/SignUp/sign_up_cubit.dart';
+import 'package:music_app/Presentation/Auth/auth_gate.dart';
 import 'package:music_app/Resources/Managers/assets_manager.dart';
 import 'package:music_app/Resources/Managers/colors_manager.dart';
 import 'package:music_app/Resources/Managers/routes_manager.dart';
@@ -69,26 +72,42 @@ class RegisterPage extends StatelessWidget {
                     ),
                     width: width * 0.7,
                     height: height * 0.07,
-                    child: FractionallySizedBox(
-                      widthFactor: 0.7,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            margin: const EdgeInsets.symmetric(
-                              horizontal: AppSize.s10,
-                            ),
-                            child: Icon(
-                              Icons.facebook,
-                              color: ColorManager.Pink,
+                    child: BlocConsumer<SignUpCubit, SignUpState>(
+                      listener: (context, state) {
+                        if (state is SignUpLoading) {
+                          Navigator.pushReplacementNamed(
+                              context, Routes.authRoute);
+                        }
+                      },
+                      builder: (context, state) {
+                        return InkWell(
+                          onTap: () async {
+                            await BlocProvider.of<SignUpCubit>(context)
+                                .googleSignUp();
+                          },
+                          child: FractionallySizedBox(
+                            widthFactor: 0.7,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Container(
+                                  margin: const EdgeInsets.symmetric(
+                                    horizontal: AppSize.s10,
+                                  ),
+                                  child: Icon(
+                                    Icons.facebook,
+                                    color: ColorManager.Pink,
+                                  ),
+                                ),
+                                Text(
+                                  "Sign Up With Google",
+                                  style: textTheme.bodySmall,
+                                ),
+                              ],
                             ),
                           ),
-                          Text(
-                            "Sign Up With Google",
-                            style: textTheme.bodySmall,
-                          ),
-                        ],
-                      ),
+                        );
+                      },
                     ),
                   ),
                   Container(

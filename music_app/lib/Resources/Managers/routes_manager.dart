@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:music_app/Cubit/SignIn/sign_in_cubit.dart';
 import 'package:music_app/Cubit/SignUp/sign_up_cubit.dart';
 import 'package:music_app/Presentation/AppBars/bottom_music_bar.dart';
+import 'package:music_app/Presentation/Auth/auth_gate.dart';
 import 'package:music_app/Presentation/Home/home_page.dart';
 import 'package:music_app/Presentation/Landing/logo_page.dart';
 import 'package:music_app/Presentation/Landing/onboarding_page.dart';
@@ -26,6 +27,7 @@ class Routes {
   static const String onBoardingRoute = '/onboarding';
   static const String signUpRoute = '/signup';
   static const String signInRoute = '/signin';
+  static const String authRoute = '/auth';
 
   static const String apartmentRoute = '/apartment';
   static const String splashRoute = '/';
@@ -75,11 +77,7 @@ class RouteGenerator {
         }
       case Routes.signUpRoute:
         {
-          return MaterialPageRoute(
-              builder: (context) => BlocProvider(
-                    create: (context) => SignUpCubit(),
-                    child: SignUpPage(),
-                  ));
+          return MaterialPageRoute(builder: (context) => SignUpPage());
         }
       case Routes.signInRoute:
         {
@@ -89,6 +87,10 @@ class RouteGenerator {
               child: SignInPage(),
             ),
           );
+        }
+      case Routes.authRoute:
+        {
+          return MaterialPageRoute(builder: (context) => AuthGate());
         }
 
       default:

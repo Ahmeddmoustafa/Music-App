@@ -42,7 +42,7 @@ class _SignInPageState extends State<SignInPage> {
             child: BlocConsumer<SignInCubit, SignInState>(
               listener: (context, state) {
                 if (state is SignInLoading) {
-                  Navigator.pushReplacementNamed(context, Routes.mainRoute);
+                  Navigator.pushReplacementNamed(context, Routes.authRoute);
                 } else if (state is SignInFailed) {
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                     showCloseIcon: true,

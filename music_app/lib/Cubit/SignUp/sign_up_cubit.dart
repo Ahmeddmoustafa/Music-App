@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:music_app/Data/Remote/firebase_services.dart';
 part 'sign_up_state.dart';
 
 class SignUpCubit extends Cubit<SignUpState> {
@@ -8,7 +10,8 @@ class SignUpCubit extends Cubit<SignUpState> {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
       TextEditingController();
-  // final authservice = AuthService();
+  final TextEditingController fullNameController = TextEditingController();
+  final authservice = FirebaseServices();
 
   late String email;
   late String password;
@@ -28,7 +31,7 @@ class SignUpCubit extends Cubit<SignUpState> {
   }
 
   void signUp() async {
-    emit(SignUpInitial());
+    emit(SignUpLoading());
     initVariables();
     bool emailerror = false;
     bool passerror = false;
@@ -56,25 +59,30 @@ class SignUpCubit extends Cubit<SignUpState> {
         ),
       );
     }
-
     if (EmailValidator.validate(email) &&
         password.length >= 8 &&
         !confirmpasserror) {
       // Perform your login/authentication logic here
 
-      // try {
-      //   final user =
-      //       await getRenter(SignInParams(email: email, password: password));
-      // } catch (serverFailure) {
-      //   debugPrint("server error");
       try {
-        // await authservice.signUp(email, password);
-        emit(SignUpLoading());
+        await authservice.signUp(email, password, fullNameController.text);
+        emit(SignUpFinished());
       } catch (err) {
         emit(SignUpFailed(error: err.toString()));
       }
 
       return;
+    }
+  }
+
+  Future<void> googleSignUp() async {
+    emit(SignUpLoading());
+
+    try {
+      await authservice.googleSignUp();
+      emit(SignUpFinished());
+    } on FirebaseException catch (err) {
+      emit(SignUpFailed(error: err.message.toString()));
     }
   }
 }
