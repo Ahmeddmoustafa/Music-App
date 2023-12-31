@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:music_app/Cubit/SignUp/sign_up_cubit.dart';
+import 'package:music_app/Presentation/Utils/screen_helper.dart';
 import 'package:music_app/Resources/Managers/assets_manager.dart';
 import 'package:music_app/Resources/Managers/colors_manager.dart';
 import 'package:music_app/Resources/Managers/fonts_manager.dart';
@@ -29,15 +30,15 @@ class _SignUpPageState extends State<SignUpPage> {
           ),
         ),
         // automaticallyImplyLeading: false,
-        title: const Image(
-          width: AppSize.s100,
-          image: AssetImage(AssetsManager.Logo),
+        title: Image(
+          width: ScreenHelper.isMobile(context) ? AppSize.s100 : AppSize.s400,
+          image: const AssetImage(AssetsManager.Logo),
         ),
       ),
       body: Center(
         child: SingleChildScrollView(
           child: SizedBox(
-            width: width * 0.9,
+            width: ScreenHelper.isMobile(context) ? width * 0.9 : width * 0.5,
             height: height * 0.9,
             child: BlocConsumer<SignUpCubit, SignUpState>(
               listener: (context, state) {

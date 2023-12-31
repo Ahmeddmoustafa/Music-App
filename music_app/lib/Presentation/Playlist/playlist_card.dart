@@ -33,7 +33,7 @@ class _PlayListCardState extends State<PlayListCard> {
                 arguments: sameSong);
           },
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Expanded(
                 child: ClipRRect(

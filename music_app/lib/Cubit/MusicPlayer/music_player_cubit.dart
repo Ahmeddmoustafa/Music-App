@@ -32,7 +32,7 @@ class MusicPlayerCubit extends Cubit<MusicPlayerState> {
 
   bool selectSong(Album selectedSong, int index) {
     bool same = false;
-    emit(MusicPlayerInitial(played: false, paused: false));
+    // emit(MusicPlayerInitial(played: false, paused: false));
     // print("curr index $songIndex and next index is $index");
     if (songIndex == index) {
       same = true;
@@ -46,13 +46,13 @@ class MusicPlayerCubit extends Cubit<MusicPlayerState> {
   }
 
   void stopSong() {
-    emit(MusicPlayerInitial(played: true, paused: false));
+    // emit(MusicPlayerInitial(played: true, paused: false));
     player.stop();
     emit(MusicPlayerSelected(played: false, paused: false));
   }
 
   void replaySong() async {
-    emit(MusicPlayerInitial(played: true, paused: true));
+    // emit(MusicPlayerInitial(played: true, paused: true));
     if (player.audioSource != null) {
       player.stop();
       await player.setAsset(AssetsManager.Song1);
@@ -64,7 +64,7 @@ class MusicPlayerCubit extends Cubit<MusicPlayerState> {
   }
 
   void pauseSong() {
-    emit(MusicPlayerInitial(played: true, paused: false));
+    // emit(MusicPlayerInitial(played: true, paused: false));
     player.pause();
     playing = false;
     paused = true;
@@ -75,25 +75,28 @@ class MusicPlayerCubit extends Cubit<MusicPlayerState> {
     if (player.audioSource == null) {
       return;
     }
-    emit(MusicPlayerInitial(played: false, paused: true));
+    // emit(MusicPlayerInitial(played: false, paused: true));
     if (player.audioSource != null) {
       player.play();
       playing = true;
 
-      emit(MusicPlayerSelected(played: true, paused: false));
+      // emit(MusicPlayerSelected(played: true, paused: false));
     }
     emit(MusicPlayerSelected(played: true, paused: false));
   }
 
   Future<void> playSong(bool sameSong) async {
     try {
-      emit(MusicPlayerInitial(played: false, paused: false));
+      // emit(MusicPlayerInitial(played: false, paused: false));
       if (!sameSong) {
         await player.setAsset(AssetsManager.Song1);
+        player.play();
       }
+
       player.play();
-      // player.stop();
       emit(MusicPlayerSelected(played: true, paused: false));
+
+      // player.stop();
     } on Exception {
       emit(MusicPlayerSelected(played: false, paused: true));
       // print("Error");

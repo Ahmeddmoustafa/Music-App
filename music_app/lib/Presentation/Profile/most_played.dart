@@ -72,6 +72,7 @@ class _MostPlayedState extends State<MostPlayed> {
                               Text(
                                 albums[index].albumName,
                                 style: textTheme.bodyLarge,
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ],
                           ),

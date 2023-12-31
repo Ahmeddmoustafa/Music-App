@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:music_app/Cubit/SignIn/sign_in_cubit.dart';
-import 'package:music_app/Cubit/SignUp/sign_up_cubit.dart';
 import 'package:music_app/Presentation/AppBars/bottom_music_bar.dart';
 import 'package:music_app/Presentation/Auth/auth_gate.dart';
 import 'package:music_app/Presentation/Home/home_page.dart';

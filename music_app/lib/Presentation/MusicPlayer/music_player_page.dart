@@ -21,8 +21,9 @@ class _MusicPlayerState extends State<MusicPlayer> {
     if (!widget.sameSong) {
       // print("not the  same song");
       context.read<MusicPlayerCubit>().playSong(false);
+    } else {
+      context.read<MusicPlayerCubit>().playSong(true);
     }
-    context.read<MusicPlayerCubit>().playSong(true);
 
     // context.read<MusicPlayerCubit>().playSong(1);
 

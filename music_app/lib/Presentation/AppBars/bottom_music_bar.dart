@@ -22,6 +22,7 @@ class _BottomMusicBarState extends State<BottomMusicBar> {
     return BlocBuilder<MusicPlayerCubit, MusicPlayerState>(
       builder: (context, state) {
         return BottomAppBar(
+          padding: EdgeInsets.all(0),
           height: height * 0.1,
           color: ColorManager.Transparent,
           child: GestureDetector(
